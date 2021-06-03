@@ -49,7 +49,7 @@ public class DAO
 
 	}
 	
-	public ArrayList<JavaBeans> buscarClientes()
+	public ArrayList<JavaBeans> listarClientes()
 	{
 		ArrayList<JavaBeans> listaClientes = new ArrayList<JavaBeans>();
 		try

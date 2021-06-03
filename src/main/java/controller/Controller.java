@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,19 +34,27 @@ public class Controller extends HttpServlet
 		String action = request.getServletPath();
 		if(action.equals("/main"))
 		{
-			response.sendRedirect("clientes.jsp");			
+			ArrayList<JavaBeans> listaClientes = dao.listarClientes();
+			request.setAttribute("listaClientes", listaClientes);
+			RequestDispatcher rd = request.getRequestDispatcher("clientes.jsp");
+			rd.forward(request, response);	
 		}
 		else if(action.equals("/insert"))
 		{
-			cliente.setNm_Cliente(request.getParameter("Nm_Cliente"));
-			cliente.setNr_Telefone(request.getParameter("Nr_Telefone"));
-			dao.cadastrar(cliente);
-			response.sendRedirect("main");
+			cadastrarCliente(request, response);
 		}
 		else
 		{
 			response.sendRedirect("main");
 		}
+	}
+	
+	protected void cadastrarCliente(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+	{
+		cliente.setNm_Cliente(request.getParameter("Nm_Cliente"));
+		cliente.setNr_Telefone(request.getParameter("Nr_Telefone"));
+		dao.cadastrar(cliente);
+		response.sendRedirect("main");
 	}
 
 }

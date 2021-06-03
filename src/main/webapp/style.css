@@ -30,3 +30,26 @@ h1
 	padding: 5px;
 	font-size: 1.1em;
 }
+
+
+#TB_Clientes
+{
+	margin-top: 30px;
+	border-collapse: collapse;
+}
+
+#TB_Clientes th
+{
+	background-color: #26A641;
+	color: white;
+	padding: 5px 10px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#TB_Clientes td
+{
+	padding: 5px 10px;
+	border: 1px solid #26A641;
+	border-top: 0;
+}
