@@ -18,17 +18,17 @@ public class JavaBeans
 	private String Nm_Cliente;
 	private String Nr_Telefone;
 
-	public String getID_Cadastro()
+	public String getID_Cliente()
 	{
 		return ID_Cliente;
 	}
-	public String getNm_Cadastro()
+	public String getNm_Cliente()
 	{
 		return Nm_Cliente;
 	}
-	public void setNm_Cadastro(String nm_Cadastro) 
+	public void setNm_Cliente(String nm_Cliente) 
 	{
-		Nm_Cliente = nm_Cadastro;
+		Nm_Cliente = nm_Cliente;
 	}
 	public String getNr_Telefone()
 	{

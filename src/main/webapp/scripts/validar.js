@@ -20,6 +20,6 @@ function validar()
 	}
 	else
 	{
-		document.forms["frmCadastro"].submit();
+		document.forms["frmCliente"].submit();
 	}
 }
