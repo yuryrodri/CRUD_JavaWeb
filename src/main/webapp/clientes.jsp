@@ -9,5 +9,6 @@
 </head>
 <body>
 	<h1>Relatório de Clientes</h1>
+	<a href="" class="btnPadrao">Novo Cliente</a>
 </body>
 </html>
