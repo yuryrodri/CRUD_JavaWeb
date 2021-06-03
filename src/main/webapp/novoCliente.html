@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<title>Adicionar novo Cliente</title>
+</head>
+<body>
+	<h1>Adicionar novo cliente</h1>
+	<form name="frmCliente" action="insert">
+		<table>
+			<tr>
+				<td><input type="text" name="Nm_Cliente" placeholder="Nome" class="cxTexto"></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="Nr_Telefone" placeholder="Telefone" onkeypress="$(this).mask('(00) 0000-00009')" class="cxTexto"></td>
+			</tr>
+		</table>
+		<input type="button" value="Adicionar" class="btnPadrao" onclick="validar()">
+	</form>	
+<script src="scripts/validar.js" type="text/javascript"></script>
+</body>
+</html>
