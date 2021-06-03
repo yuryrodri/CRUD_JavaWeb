@@ -20,7 +20,6 @@ public class DAO
 		{
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, user, pass);
-			System.out.println("Conectou");
 			return con;
 		} 
 		catch (Exception e)
@@ -36,7 +35,7 @@ public class DAO
 		{
 			Connection con = conectar();
 			String instrucaoSQL = "insert into TB_Clientes"
-					+ "(Nm_Cliente,Nr_Telefone)"
+					+ "(Nm_Cliente,Nr_Telefone,Dt_Cadastro)"
 					+ "values (?,?,GETDATE())";
 			PreparedStatement stmt = con.prepareStatement(instrucaoSQL);
 			stmt.setString(1, cliente.getNm_Cliente());
@@ -52,16 +51,30 @@ public class DAO
 	
 	public ArrayList<JavaBeans> buscarClientes()
 	{
+		ArrayList<JavaBeans> listaClientes = new ArrayList<JavaBeans>();
 		try
 		{
 			Connection con = conectar();
 			String instrucaoSQL = "select * from TB_Clientes";
 			PreparedStatement stmt = con.prepareStatement(instrucaoSQL);
 			ResultSet resultSet = stmt.executeQuery();
-			return null;
+			while(resultSet.next())
+			{
+				JavaBeans cliente = new JavaBeans
+						(
+							resultSet.getString("ID_Cliente"),
+							resultSet.getString("Nm_Cliente"),
+							resultSet.getString("Nr_Telefone"),
+							resultSet.getString("Dt_Cadastro")
+						);
+				listaClientes.add(cliente);
+			}
+			
+			return listaClientes;
 		}
 		catch (Exception e)
 		{
+			System.out.println(e);
 			return null;
 		}
 		

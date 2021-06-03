@@ -28,7 +28,6 @@ public class Controller extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		System.out.println(request.getServletPath());
 		String action = request.getServletPath();
 		if(action.equals("/main"))
 		{
