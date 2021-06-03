@@ -9,13 +9,19 @@ function validar()
 	if(nome == "")
 	{
 		alert('Por favor, preencha o campo Nome')
-		frmCadastro.Nm_Cadastro.focus()
+		frmCliente.Nm_Cliente.focus()
+		return false
+	}
+	else if(nome.length > 50)
+	{
+		alert('O campo Nome não pode ter mais de 50 caracteres')
+		frmCliente.Nm_Cliente.focus()
 		return false
 	}
 	else if(fone.length < 14)
 	{
 		alert('Por favor, preencha o campo Fone corretamente')
-		frmCadastro.Nr_Telefone.focus()
+		frmCliente.Nr_Telefone.focus()
 		return false
 	}
 	else
