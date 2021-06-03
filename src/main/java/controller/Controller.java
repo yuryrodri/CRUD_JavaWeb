@@ -16,7 +16,7 @@ import model.JavaBeans;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet(urlPatterns = {"/Controller", "/main" , "/insert"})
+@WebServlet(urlPatterns = {"/Controller", "/main" , "/insert" , "/update"})
 public class Controller extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
@@ -34,19 +34,28 @@ public class Controller extends HttpServlet
 		String action = request.getServletPath();
 		if(action.equals("/main"))
 		{
-			ArrayList<JavaBeans> listaClientes = dao.listarClientes();
-			request.setAttribute("listaClientes", listaClientes);
-			RequestDispatcher rd = request.getRequestDispatcher("clientes.jsp");
-			rd.forward(request, response);	
+			carregarClientes(request, response);
 		}
 		else if(action.equals("/insert"))
 		{
 			cadastrarCliente(request, response);
 		}
+		else if(action.equals("/update"))
+		{
+			editarCliente(request, response);
+		}
 		else
 		{
 			response.sendRedirect("main");
 		}
+	}
+	
+	protected void carregarClientes(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+	{
+		ArrayList<JavaBeans> listaClientes = dao.listarClientes();
+		request.setAttribute("listaClientes", listaClientes);
+		RequestDispatcher rd = request.getRequestDispatcher("clientes.jsp");
+		rd.forward(request, response);	
 	}
 	
 	protected void cadastrarCliente(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
@@ -55,6 +64,11 @@ public class Controller extends HttpServlet
 		cliente.setNr_Telefone(request.getParameter("Nr_Telefone"));
 		dao.cadastrar(cliente);
 		response.sendRedirect("main");
+	}
+	
+	protected void editarCliente(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+	{
+		
 	}
 
 }

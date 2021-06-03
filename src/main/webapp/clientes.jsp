@@ -23,6 +23,7 @@
 				<th>Nm_Cadastro</th>
 				<th>Nr_Telefone</th>
 				<th>Dt_Cadastro</th>
+				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,6 +34,10 @@
 				<td><%=listaClientes.get(i).getNm_Cliente()%></td>
 				<td><%=listaClientes.get(i).getNr_Telefone()%></td>
 				<td><%=listaClientes.get(i).getDt_Cadastro()%></td>
+				<td>
+					<a href="update" class="btnPadrao">Editar</a>
+					<a href="" class="btnPadrao" style="background-color: red">Excluir</a>
+				</td>
 			</tr>
 		<%}%>
 		</tbody>	
