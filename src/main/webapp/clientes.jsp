@@ -35,8 +35,8 @@
 				<td><%=listaClientes.get(i).getNr_Telefone()%></td>
 				<td><%=listaClientes.get(i).getDt_Cadastro()%></td>
 				<td>
-					<a href="update" class="btnPadrao">Editar</a>
-					<a href="" class="btnPadrao" style="background-color: red">Excluir</a>
+					<a href="buscar?ID_Cliente=<%=listaClientes.get(i).getID_Cliente()%>" class="btnPadrao">Editar</a>
+					<a href="delete?ID_Cliente=<%=listaClientes.get(i).getID_Cliente()%>" class="btnPadrao" style="background-color: red">Excluir</a>
 				</td>
 			</tr>
 		<%}%>

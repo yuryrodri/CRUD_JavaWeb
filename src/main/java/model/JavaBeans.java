@@ -30,6 +30,11 @@ public class JavaBeans
 	{
 		return ID_Cliente;
 	}
+	
+	public void setIDCliente(String id_Cliente)
+	{
+		ID_Cliente = id_Cliente;
+	}
 
 	public String getNm_Cliente()
 	{

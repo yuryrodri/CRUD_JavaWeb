@@ -41,12 +41,38 @@ public class DAO
 			stmt.setString(1, cliente.getNm_Cliente());
 			stmt.setString(2, cliente.getNr_Telefone());
 			stmt.execute();
+			con.close();
 		} 
 		catch (Exception e)
 		{
 			System.out.println(e);
 		}
 
+	}
+	
+	public JavaBeans pesquisarCliente(String ID_Cliente)
+	{
+		JavaBeans cliente = new JavaBeans();
+		try
+		{
+			Connection con = conectar();
+			String intrucaoSQL = "Select * from TB_Clientes where ID_Cliente = ?";
+			PreparedStatement stmt = con.prepareStatement(intrucaoSQL);
+			stmt.setInt(1, Integer.parseInt(ID_Cliente));
+			ResultSet resultSet = stmt.executeQuery();
+			resultSet.next();
+			cliente.setIDCliente(resultSet.getString("ID_Cliente"));
+			cliente.setNm_Cliente(resultSet.getString("Nm_Cliente"));
+			cliente.setNr_Telefone(resultSet.getString("Nr_Telefone"));
+			con.close();
+			
+			return cliente;
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+			return null;
+		}		
 	}
 	
 	public ArrayList<JavaBeans> listarClientes()
