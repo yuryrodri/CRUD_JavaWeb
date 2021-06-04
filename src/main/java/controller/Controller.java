@@ -29,8 +29,7 @@ public class Controller extends HttpServlet
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String action = request.getServletPath();
 		if (action.equals("/main"))
@@ -45,11 +44,11 @@ public class Controller extends HttpServlet
 		{
 			pesquisarCliente(request, response);
 		}
-		else if(action.equals("/update"))
+		else if (action.equals("/update"))
 		{
 			editarCliente(request, response);
 		}
-		else if(action.equals("/delete")) 
+		else if (action.equals("/delete"))
 		{
 			excluirCliente(request, response);
 		}

@@ -35,7 +35,7 @@ public class DAO
 		try
 		{
 			Connection con = conectar();
-			String instrucaoSQL = "select * from TB_Clientes";
+			String instrucaoSQL = "select * from TB_Clientes order by Nm_Cliente";
 			PreparedStatement stmt = con.prepareStatement(instrucaoSQL);
 			ResultSet resultSet = stmt.executeQuery();
 			while(resultSet.next())

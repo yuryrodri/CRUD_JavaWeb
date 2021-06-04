@@ -4,7 +4,7 @@
 	pageEncoding="utf-8"%>
 
 <%
-	ArrayList<JavaBeans> listaClientes = (ArrayList<JavaBeans>) request.getAttribute("listaClientes");
+ArrayList<JavaBeans> listaClientes = (ArrayList<JavaBeans>) request.getAttribute("listaClientes");
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,20 +27,25 @@
 			</tr>
 		</thead>
 		<tbody>
-		<%for (int i = 0; i < listaClientes.size(); i++)
-		{%>			
+			<%
+			for (int i = 0; i < listaClientes.size(); i++)
+			{
+			%>
 			<tr>
 				<td><%=listaClientes.get(i).getID_Cliente()%></td>
 				<td><%=listaClientes.get(i).getNm_Cliente()%></td>
 				<td><%=listaClientes.get(i).getNr_Telefone()%></td>
 				<td><%=listaClientes.get(i).getDt_Cadastro()%></td>
-				<td>
-					<a href="buscar?ID_Cliente=<%=listaClientes.get(i).getID_Cliente()%>" class="btnPadrao">Editar</a>
-					<a href="delete?ID_Cliente=<%=listaClientes.get(i).getID_Cliente()%>" class="btnPadrao" style="background-color: red">Excluir</a>
-				</td>
+				<td><a
+					href="buscar?ID_Cliente=<%=listaClientes.get(i).getID_Cliente()%>"
+					class="btnPadrao">Editar</a> <a
+					href="delete?ID_Cliente=<%=listaClientes.get(i).getID_Cliente()%>"
+					class="btnPadrao" style="background-color: red">Excluir</a></td>
 			</tr>
-		<%}%>
-		</tbody>	
+			<%
+			}
+			%>
+		</tbody>
 	</table>
 </body>
 </html>
