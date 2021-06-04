@@ -43,7 +43,7 @@ public class Controller extends HttpServlet
 		}
 		else if (action.equals("/buscar"))
 		{
-			buscarCliente(request, response);
+			pesquisarCliente(request, response);
 		}
 		else if(action.equals("/update"))
 		{
@@ -73,7 +73,7 @@ public class Controller extends HttpServlet
 		response.sendRedirect("main");
 	}
 
-	protected void buscarCliente(HttpServletRequest request, HttpServletResponse response)
+	protected void pesquisarCliente(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
 		String ID_Cliente = request.getParameter("ID_Cliente");
