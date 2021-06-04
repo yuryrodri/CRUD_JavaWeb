@@ -29,6 +29,36 @@ public class DAO
 		}
 	}
 
+	public ArrayList<JavaBeans> listarClientes()
+	{
+		ArrayList<JavaBeans> listaClientes = new ArrayList<JavaBeans>();
+		try
+		{
+			Connection con = conectar();
+			String instrucaoSQL = "select * from TB_Clientes";
+			PreparedStatement stmt = con.prepareStatement(instrucaoSQL);
+			ResultSet resultSet = stmt.executeQuery();
+			while(resultSet.next())
+			{
+				JavaBeans cliente = new JavaBeans
+						(
+							resultSet.getString("ID_Cliente"),
+							resultSet.getString("Nm_Cliente"),
+							resultSet.getString("Nr_Telefone"),
+							resultSet.getString("Dt_Cadastro")
+						);
+				listaClientes.add(cliente);
+			}
+			
+			return listaClientes;
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+			return null;
+		}		
+	}
+	
 	public void cadastrar(JavaBeans cliente)
 	{
 		try
@@ -75,34 +105,41 @@ public class DAO
 		}		
 	}
 	
-	public ArrayList<JavaBeans> listarClientes()
+	public void editarCliente(JavaBeans cliente)
 	{
-		ArrayList<JavaBeans> listaClientes = new ArrayList<JavaBeans>();
 		try
 		{
 			Connection con = conectar();
-			String instrucaoSQL = "select * from TB_Clientes";
+			String instrucaoSQL = "Update TB_Clientes "
+					+ "Set Nm_Cliente = ? , Nr_Telefone = ? "
+					+ "Where ID_Cliente = ?";
 			PreparedStatement stmt = con.prepareStatement(instrucaoSQL);
-			ResultSet resultSet = stmt.executeQuery();
-			while(resultSet.next())
-			{
-				JavaBeans cliente = new JavaBeans
-						(
-							resultSet.getString("ID_Cliente"),
-							resultSet.getString("Nm_Cliente"),
-							resultSet.getString("Nr_Telefone"),
-							resultSet.getString("Dt_Cadastro")
-						);
-				listaClientes.add(cliente);
-			}
-			
-			return listaClientes;
+			stmt.setString(1, cliente.getNm_Cliente());
+			stmt.setString(2, cliente.getNr_Telefone());
+			stmt.setInt(3, Integer.parseInt(cliente.getID_Cliente()));
+			stmt.execute();
+			con.close();
 		}
 		catch (Exception e)
 		{
 			System.out.println(e);
-			return null;
 		}
-		
+	}
+	
+	public void excluirCliente(String ID_Cliente)
+	{
+		try
+		{
+			Connection con = conectar();
+			String instrucaoSQL = "Delete from TB_Clientes Where ID_Cliente = ?";
+			PreparedStatement stmt = con.prepareStatement(instrucaoSQL);
+			stmt.setInt(1, Integer.parseInt(ID_Cliente));
+			stmt.execute();
+			con.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
 	}
 }

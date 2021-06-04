@@ -16,7 +16,7 @@ import model.JavaBeans;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/buscar" , "/update" })
+@WebServlet(urlPatterns = {"/Controller", "/main", "/insert", "/buscar" , "/update"})
 public class Controller extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
@@ -47,7 +47,7 @@ public class Controller extends HttpServlet
 		}
 		else if(action.equals("/update"))
 		{
-			
+			editarCliente(request, response);
 		}
 		else
 		{
@@ -67,6 +67,7 @@ public class Controller extends HttpServlet
 	protected void cadastrarCliente(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
+		cliente = new JavaBeans();
 		cliente.setNm_Cliente(request.getParameter("Nm_Cliente"));
 		cliente.setNr_Telefone(request.getParameter("Nr_Telefone"));
 		dao.cadastrar(cliente);
@@ -81,6 +82,17 @@ public class Controller extends HttpServlet
 		request.setAttribute("cliente", cliente);
 		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
 		rd.forward(request, response);
+	}
+	
+	protected void editarCliente(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+		cliente = new JavaBeans();
+		cliente.setIDCliente(request.getParameter("ID_Cliente"));
+		cliente.setNm_Cliente(request.getParameter("Nm_Cliente"));
+		cliente.setNr_Telefone(request.getParameter("Nr_Telefone"));
+		dao.editarCliente(cliente);
+		response.sendRedirect("main");
 	}
 
 }

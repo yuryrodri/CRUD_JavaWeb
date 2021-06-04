@@ -42,7 +42,7 @@ JavaBeans cliente = (JavaBeans) request.getAttribute("cliente");
 					onkeypress="$(this).mask('(00) 0000-00009')" class="cxTexto"></td>
 			</tr>
 		</table>
-		<input type="button" value="Adicionar" class="btnPadrao"
+		<input type="button" value="Editar Cliente" class="btnPadrao"
 			onclick="validar()">
 	</form>
 	<script src="scripts/validar.js" type="text/javascript"></script>
