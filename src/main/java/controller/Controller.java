@@ -16,7 +16,7 @@ import model.JavaBeans;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet(urlPatterns = {"/Controller", "/main", "/insert", "/buscar" , "/update"})
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/buscar", "/update", "/delete" })
 public class Controller extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +48,10 @@ public class Controller extends HttpServlet
 		else if(action.equals("/update"))
 		{
 			editarCliente(request, response);
+		}
+		else if(action.equals("/delete")) 
+		{
+			excluirCliente(request, response);
 		}
 		else
 		{
@@ -83,7 +87,7 @@ public class Controller extends HttpServlet
 		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
 		rd.forward(request, response);
 	}
-	
+
 	protected void editarCliente(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
@@ -95,4 +99,11 @@ public class Controller extends HttpServlet
 		response.sendRedirect("main");
 	}
 
+	protected void excluirCliente(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+		String ID_Cliente = request.getParameter("ID_Cliente");
+		dao.excluirCliente(ID_Cliente);
+		response.sendRedirect("main");
+	}
 }
